@@ -9,9 +9,11 @@ public partial class Nurse
 
     public string Grade { get; set; } = null!;
 
+    public bool Active { get; set; }
+
     public virtual ICollection<Contract> Contracts { get; set; } = new List<Contract>();
 
     public virtual User NurseNavigation { get; set; } = null!;
 
-    public virtual ICollection<Suburb> Suburbs { get; set; } = new List<Suburb>();
+    public virtual ICollection<PrefferedSuburb> PrefferedSuburbs { get; set; } = new List<PrefferedSuburb>();
 }

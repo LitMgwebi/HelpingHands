@@ -13,11 +13,13 @@ public partial class Suburb
 
     public int CityId { get; set; }
 
+    public bool Active { get; set; }
+
     public virtual City City { get; set; } = null!;
 
     public virtual ICollection<Contract> Contracts { get; set; } = new List<Contract>();
 
     public virtual ICollection<Patient> Patients { get; set; } = new List<Patient>();
 
-    public virtual ICollection<Nurse> Nurses { get; set; } = new List<Nurse>();
+    public virtual ICollection<PrefferedSuburb> PrefferedSuburbs { get; set; } = new List<PrefferedSuburb>();
 }

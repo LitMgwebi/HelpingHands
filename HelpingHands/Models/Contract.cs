@@ -29,6 +29,8 @@ public partial class Contract
 
     public string? Comment { get; set; }
 
+    public bool Active { get; set; }
+
     public virtual Nurse? Nurse { get; set; }
 
     public virtual Patient Patient { get; set; } = null!;

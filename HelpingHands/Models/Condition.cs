@@ -11,5 +11,7 @@ public partial class Condition
 
     public string? Description { get; set; }
 
-    public virtual ICollection<Patient> Patients { get; set; } = new List<Patient>();
+    public bool Active { get; set; }
+
+    public virtual ICollection<PatientCondition> PatientConditions { get; set; } = new List<PatientCondition>();
 }

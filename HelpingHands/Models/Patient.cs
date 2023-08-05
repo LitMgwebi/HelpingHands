@@ -19,11 +19,13 @@ public partial class Patient
 
     public string? AdditionalInfo { get; set; }
 
+    public bool Active { get; set; }
+
     public virtual ICollection<Contract> Contracts { get; set; } = new List<Contract>();
+
+    public virtual ICollection<PatientCondition> PatientConditions { get; set; } = new List<PatientCondition>();
 
     public virtual User PatientNavigation { get; set; } = null!;
 
     public virtual Suburb Suburb { get; set; } = null!;
-
-    public virtual ICollection<Condition> Conditions { get; set; } = new List<Condition>();
 }

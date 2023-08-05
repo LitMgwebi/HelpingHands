@@ -13,11 +13,13 @@ public partial class Visit
 
     public TimeSpan? Arrival { get; set; }
 
-    public TimeSpan? Departure { get; set; }
+    public TimeSpan Departure { get; set; }
 
     public string WoundCondition { get; set; } = null!;
 
     public string? Note { get; set; }
+
+    public bool Active { get; set; }
 
     public virtual Contract Contract { get; set; } = null!;
 }
