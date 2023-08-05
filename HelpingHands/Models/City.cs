@@ -11,7 +11,7 @@ public partial class City
 
     public string Abbreviation { get; set; } = null!;
 
-    public bool Active { get; set; }
+    public bool Active { get; set; } = true;
 
     public virtual ICollection<Suburb> Suburbs { get; set; } = new List<Suburb>();
 }

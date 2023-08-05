@@ -9,7 +9,7 @@ public partial class PrefferedSuburb
 
     public int SuburbId { get; set; }
 
-    public bool Active { get; set; }
+    public bool Active { get; set; } = true;
 
     public virtual Nurse Nurse { get; set; } = null!;
 

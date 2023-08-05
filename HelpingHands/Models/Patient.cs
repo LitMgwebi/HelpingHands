@@ -19,7 +19,7 @@ public partial class Patient
 
     public string? AdditionalInfo { get; set; }
 
-    public bool Active { get; set; }
+    public bool Active { get; set; } = true;
 
     public virtual ICollection<Contract> Contracts { get; set; } = new List<Contract>();
 

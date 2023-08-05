@@ -13,7 +13,7 @@ public partial class Suburb
 
     public int CityId { get; set; }
 
-    public bool Active { get; set; }
+    public bool Active { get; set; } = true;
 
     public virtual City City { get; set; } = null!;
 

@@ -29,7 +29,7 @@ public partial class Contract
 
     public string? Comment { get; set; }
 
-    public bool Active { get; set; }
+    public bool Active { get; set; } = true;
 
     public virtual Nurse? Nurse { get; set; }
 
