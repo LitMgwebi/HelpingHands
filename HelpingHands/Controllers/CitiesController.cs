@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HelpingHands.Models;
+using System.Data.Entity;
 
 namespace HelpingHands.Controllers
 {
@@ -19,23 +20,26 @@ namespace HelpingHands.Controllers
         }
 
         // GET: Cities
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-              return _context.Cities != null ? 
-                          View(await _context.Cities.FromSql($"GetCities").ToListAsync()) :
-                          Problem("Entity set 'HelpingHandsV2Context.Cities'  is null.");
+            var cities = _context.Cities.FromSql($"GetCities").ToList();
+
+            if (cities == null)
+            {
+                return NotFound();
+            }
+            return View(cities);
         }
 
         // GET: Cities/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null || _context.Cities == null)
             {
                 return NotFound();
             }
 
-            var city = await _context.Cities
-                .FirstOrDefaultAsync(m => m.CityId == id);
+            var city = _context.Cities.FromSql($"GetCity {id}").AsEnumerable().FirstOrDefault();
             if (city == null)
             {
                 return NotFound();
@@ -67,14 +71,14 @@ namespace HelpingHands.Controllers
         }
 
         // GET: Cities/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null || _context.Cities == null)
             {
                 return NotFound();
             }
 
-            var city = await _context.Cities.FindAsync(id);
+            var city = _context.Cities.FromSql($"GetCity {id}").AsEnumerable().FirstOrDefault();
             if (city == null)
             {
                 return NotFound();
@@ -149,14 +153,14 @@ namespace HelpingHands.Controllers
             {
                 _context.Cities.Remove(city);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CityExists(int id)
         {
-          return (_context.Cities?.Any(e => e.CityId == id)).GetValueOrDefault();
+            return (_context.Cities?.Any(e => e.CityId == id)).GetValueOrDefault();
         }
     }
 }
