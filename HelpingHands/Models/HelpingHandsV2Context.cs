@@ -38,8 +38,8 @@ public partial class HelpingHandsV2Context : DbContext
     public virtual DbSet<Wound> Wounds { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=Lithi_Mgwebi\\SQLEXPRESS;Initial Catalog=HelpingHandsV2;Integrated Security=True;Encrypt=false");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Data Source=Lithi_Mgwebi\\SQLEXPRESS;Initial Catalog=HelpingHandsV2;Integrated Security=True;Encrypt=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -48,7 +48,7 @@ public partial class HelpingHandsV2Context : DbContext
             entity.ToTable("City");
 
             entity.Property(e => e.Abbreviation).HasMaxLength(5);
-            entity.Property(e => e.Name).HasMaxLength(20);
+            entity.Property(e => e.CityName).HasMaxLength(20);
         });
 
         modelBuilder.Entity<Condition>(entity =>
@@ -168,7 +168,7 @@ public partial class HelpingHandsV2Context : DbContext
         {
             entity.ToTable("Suburb");
 
-            entity.Property(e => e.Name).HasMaxLength(20);
+            entity.Property(e => e.SuburbName).HasMaxLength(20);
 
             entity.HasOne(d => d.City).WithMany(p => p.Suburbs)
                 .HasForeignKey(d => d.CityId)

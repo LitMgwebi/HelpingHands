@@ -9,7 +9,7 @@ public partial class Nurse
 
     public string Grade { get; set; } = null!;
 
-    public bool Active { get; set; } = true;
+    public bool Active { get; set; }
 
     public virtual ICollection<Contract> Contracts { get; set; } = new List<Contract>();
 

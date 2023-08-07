@@ -13,7 +13,7 @@ public partial class Wound
 
     public string? Description { get; set; }
 
-    public bool Active { get; set; } = true;
+    public bool Active { get; set; }
 
     public virtual ICollection<Contract> Contracts { get; set; } = new List<Contract>();
 }

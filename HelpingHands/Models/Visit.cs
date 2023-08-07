@@ -19,7 +19,7 @@ public partial class Visit
 
     public string? Note { get; set; }
 
-    public bool Active { get; set; } = true;
+    public bool Active { get; set; }
 
     public virtual Contract Contract { get; set; } = null!;
 }

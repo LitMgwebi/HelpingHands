@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.SuburbName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PostalCode)
@@ -31,7 +31,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.SuburbName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PostalCode)
@@ -40,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.Active)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.City.CityId)
+                @Html.DisplayFor(modelItem => item.City.CityName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.SuburbId">Edit</a> |

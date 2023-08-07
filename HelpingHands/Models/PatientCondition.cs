@@ -9,7 +9,7 @@ public partial class PatientCondition
 
     public int ConditionId { get; set; }
 
-    public bool Active { get; set; } = true;
+    public bool Active { get; set; }
 
     public virtual Condition Condition { get; set; } = null!;
 

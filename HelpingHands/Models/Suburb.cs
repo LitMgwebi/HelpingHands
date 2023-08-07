@@ -7,13 +7,13 @@ public partial class Suburb
 {
     public int SuburbId { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string SuburbName { get; set; } = null!;
 
     public int PostalCode { get; set; }
 
     public int CityId { get; set; }
 
-    public bool Active { get; set; } = true;
+    public bool Active { get; set; }
 
     public virtual City City { get; set; } = null!;
 

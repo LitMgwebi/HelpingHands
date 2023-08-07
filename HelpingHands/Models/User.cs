@@ -33,7 +33,7 @@ public partial class User
 
     public string? ProfilePictureName { get; set; }
 
-    public bool Active { get; set; } = true;
+    public bool Active { get; set; }
 
     public virtual Nurse? Nurse { get; set; }
 
