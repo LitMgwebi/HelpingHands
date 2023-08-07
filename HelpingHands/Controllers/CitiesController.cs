@@ -83,7 +83,7 @@ namespace HelpingHands.Controllers
             }
         }
 
-        // GET: Cities/Edit/5
+        // GET: Cities/Edit/:id
         public async Task<IActionResult> Edit(int id)
         {
             try
@@ -101,7 +101,7 @@ namespace HelpingHands.Controllers
             }
         }
 
-        // POST: Cities/Edit/5
+        // POST: Cities/Edit/:id
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CityId,Name,Abbreviation,Active")] City city)
@@ -115,16 +115,34 @@ namespace HelpingHands.Controllers
                 Console.WriteLine("Updated");
                 return RedirectToAction(nameof(Index));
             }
+            catch(Exception ex)
+            {
+                return NotFound(ex);
+            }
+        }
+
+        // GET: Cities/Delete/:id
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                var city = await _city.GetCity(id);
+                if (city == null)
+                {
+                    return NotFound();
+                }
+                return View(city.FirstOrDefault());
+            }
             catch
             {
                 throw;
             }
         }
 
-        // POST: Cities/Delete/5
-        [HttpPost]
+        // POST: Cities/Delete/:id
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             try
             {
@@ -132,9 +150,9 @@ namespace HelpingHands.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception ex)
             {
-                throw;
+                return NotFound(ex);
             }
         }
     }

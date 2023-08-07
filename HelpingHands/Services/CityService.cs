@@ -73,7 +73,7 @@ namespace HelpingHands.Services
                 var param = new SqlParameter("@CityId", Id);
 
                 await Task.Run(() => _context.Database
-                .ExecuteSqlRawAsync($"exec CityDelete {param}", param));
+                .ExecuteSqlRawAsync("exec CityDelete @CityId", param));
             }
             catch
             {
