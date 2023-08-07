@@ -2,7 +2,6 @@
 using HelpingHands.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
-using Microsoft.AspNetCore.Mvc;
 
 /** 
  * A lot of help for implementing a Service was provided by the good people at C# Corner, namely:
@@ -18,18 +17,14 @@ namespace HelpingHands.Services
         
         public async Task<List<City>> GetCities()
         {
-            return await _context.Cities
-                .FromSqlRaw<City>("CityGetAll")
-                .ToListAsync();
+            return await _context.Cities.FromSqlRaw("CityGetAll").ToListAsync();
         }
 
         public async Task<IEnumerable<City>> GetCity(int Id)
         {
             var param = new SqlParameter("@CityId", Id);
             
-            var city = await Task.Run(() => _context.Cities
-            .FromSqlRaw(@"exec CityGetOne @CityId", param)
-            .ToListAsync());
+            var city = await Task.Run(() => _context.Cities.FromSqlRaw(@"exec CityGetOne @CityId", param).ToListAsync());
 
             return city;
         }
@@ -42,8 +37,7 @@ namespace HelpingHands.Services
             parameter.Add(new SqlParameter("@Abbreviation", city.Abbreviation));
             parameter.Add(new SqlParameter("@Active", city.Active));
 
-            await Task.Run(() => _context.Database
-            .ExecuteSqlRawAsync(@"exec CityInsert @Name, @Abbreviation, @Active", parameter.ToArray()));
+            await Task.Run(() => _context.Database.ExecuteSqlRawAsync(@"exec CityInsert @Name, @Abbreviation, @Active", parameter.ToArray()));
         }
         
         public async Task UpdateCity(City city)

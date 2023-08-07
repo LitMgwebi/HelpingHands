@@ -1,56 +1,55 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using HelpingHands.Models;
 using HelpingHands.Interfaces;
 
-/** 
- * A lot of help for implementing a Service was provided by the good people at C# Corner, namely:
- * https://www.c-sharpcorner.com/article/crud-operation-using-entity-framework-core-and-stored-procedure-in-net-core-6-w/
-**/
-
 namespace HelpingHands.Controllers
 {
-    public class CitiesController : Controller
+    public class SuburbsController : Controller
     {
+        private readonly ISuburb _suburb;
         private readonly ICity _city;
 
-        public CitiesController(ICity cityService) => _city = cityService;
+        public SuburbsController(ISuburb suburb, ICity city)
+        {
+            _suburb = suburb;
+            _city = city;
+        }
 
         #region Index and Details
-        
-        // GET: Cities
+
+        // GET: Suburbs
         public async Task<IActionResult> Index()
         {
             try
             {
-                var cities = await _city.GetCities();
-                if(cities == null)
+                var suburbs = await _suburb.GetSuburbs();
+                if(suburbs == null)
                 {
                     return NotFound();
                 }
-                return View(cities);
-            }
-            catch (Exception ex)
+
+                return View(suburbs);
+            } catch (Exception ex)
             {
-                return BadRequest(ex);
+                return new JsonResult(new { error = ex.Message });
             }
         }
-        
-        // GET: Cities/GetCity/:id
-        [HttpGet("Details")]
+
+        // GET: Suburbs/Details/:id
         public async Task<IActionResult> Details(int id)
         {
             try
             {
-                var city = await _city.GetCity(id);
-                if (city == null)
+                var suburb = await _suburb.GetSuburb(id);
+                if(suburb == null)
                 {
                     return NotFound();
                 }
-                return View(city.FirstOrDefault());
-            }
-            catch
+                return View(suburb.FirstOrDefault());
+            } catch (Exception ex)
             {
-                throw;
+                return BadRequest(ex);
             }
         }
 
@@ -58,32 +57,34 @@ namespace HelpingHands.Controllers
 
         #region Create
 
-        // GET: Cities/Create
-        public IActionResult Create()
+        // GET: Suburbs/Create
+        public async Task<IActionResult> Create()
         {
             try
             {
+                var cities = await _city.GetCities();
+                ViewData["CityId"] = new SelectList(cities, "CityId", "Name");
                 return View();
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 return BadRequest(ex);
             }
         }
-        
-        // POST: Cities/Create
+
+        // POST: Suburbs/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CityId,Name,Abbreviation,Active")] City city)
+        public async Task<IActionResult> Create([Bind("SuburbId,Name,PostalCode,CityId,Active")] Suburb suburb)
         {
-            if (city == null)
+            if(suburb == null)
+            {
                 return NotFound();
+            }
             try
             {
-                await _city.AddCity(city);
+                await _suburb.AddSuburb(suburb);
                 return RedirectToAction(nameof(Index));
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 return BadRequest(ex);
             }
@@ -93,17 +94,17 @@ namespace HelpingHands.Controllers
 
         #region Edit
 
-        // GET: Cities/Edit/:id
+        // GET: Suburbs/Edit/:id
         public async Task<IActionResult> Edit(int id)
         {
             try
             {
-                var city = await _city.GetCity(id);
-                if (city == null)
+                var suburb = await _suburb.GetSuburb(id);
+                if (suburb == null)
                 {
                     return NotFound();
                 }
-                return View(city.FirstOrDefault());
+                return View(suburb.FirstOrDefault());
             }
             catch (Exception ex)
             {
@@ -111,20 +112,20 @@ namespace HelpingHands.Controllers
             }
         }
 
-        // POST: Cities/Edit/:id
+        // POST: Suburbs/Edit/:id
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CityId,Name,Abbreviation,Active")] City city)
+        public async Task<IActionResult> Edit(int id, [Bind("SuburbId,Name,PostalCode,CityId,Active")] Suburb suburb)
         {
-            if(id != city.CityId)
+            if (id != suburb.SuburbId)
                 return NotFound();
 
             try
             {
-                await _city.UpdateCity(city);
+                await _suburb.UpdateSuburb(suburb);
                 return RedirectToAction(nameof(Index));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex);
             }
@@ -134,7 +135,7 @@ namespace HelpingHands.Controllers
 
         #region Delete
 
-        // GET: Cities/Delete/:id
+        // GET: Suburbs/Delete/:id
         public async Task<IActionResult> Delete(int id)
         {
             try
@@ -152,18 +153,18 @@ namespace HelpingHands.Controllers
             }
         }
 
-        // POST: Cities/Delete/:id
+        // POST: Suburbs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             try
             {
-                await _city.DeleteCity(id);
+                await _suburb.DeleteSuburb(id);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex);
             }

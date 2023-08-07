@@ -11,6 +11,7 @@ builder.Services.AddDbContext<HelpingHandsV2Context>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ICity, CityService>();
+builder.Services.AddScoped<ISuburb, SuburbService>();
 
 var app = builder.Build();
 

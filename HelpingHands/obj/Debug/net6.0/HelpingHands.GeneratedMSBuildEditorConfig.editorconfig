@@ -52,6 +52,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/lithi/OneDrive/Documents/Github/HelpingHands/HelpingHands/Views/Suburbs/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VidXJic1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lithi/OneDrive/Documents/Github/HelpingHands/HelpingHands/Views/Suburbs/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VidXJic1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lithi/OneDrive/Documents/Github/HelpingHands/HelpingHands/Views/Suburbs/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VidXJic1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lithi/OneDrive/Documents/Github/HelpingHands/HelpingHands/Views/Suburbs/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VidXJic1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lithi/OneDrive/Documents/Github/HelpingHands/HelpingHands/Views/Suburbs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VidXJic1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/lithi/OneDrive/Documents/Github/HelpingHands/HelpingHands/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
