@@ -49,7 +49,7 @@ namespace HelpingHands.Controllers
                 return View(suburb.FirstOrDefault());
             } catch (Exception ex)
             {
-                return BadRequest(ex);
+                return new JsonResult(new { error = ex.Message });
             }
         }
 
@@ -63,7 +63,7 @@ namespace HelpingHands.Controllers
             try
             {
                 var cities = await _city.GetCities();
-                ViewData["CityId"] = new SelectList(cities, "CityId", "Name");
+                ViewData["CityId"] = new SelectList(cities, "CityId", "CityName");
                 return View();
             } catch (Exception ex)
             {

@@ -45,7 +45,7 @@ namespace HelpingHands.Services
             {
                 var parameter = new List<SqlParameter>();
 
-                parameter.Add(new SqlParameter("@Name", suburb.Name));
+                parameter.Add(new SqlParameter("@Name", suburb.SuburbName));
                 parameter.Add(new SqlParameter("@PostalCode", suburb.PostalCode));
                 parameter.Add(new SqlParameter("@CityId", suburb.CityId));
                 parameter.Add(new SqlParameter("@Active", suburb.Active));
@@ -65,7 +65,7 @@ namespace HelpingHands.Services
                 var parameter = new List<SqlParameter>();
 
                 parameter.Add(new SqlParameter("@SuburbId", suburb.SuburbId));
-                parameter.Add(new SqlParameter("@Name", suburb.Name));
+                parameter.Add(new SqlParameter("@Name", suburb.SuburbName));
                 parameter.Add(new SqlParameter("@PostalCode", suburb.PostalCode));
                 parameter.Add(new SqlParameter("@CityId", suburb.CityId));
                 parameter.Add(new SqlParameter("@Active", suburb.Active));
